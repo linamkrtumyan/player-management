@@ -1,0 +1,991 @@
+/* Простой минималистичный дизайн с плавными анимациями */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-gray);
+}
+
+.app-header {
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-header .navbar-brand {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  width: 100%;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.page-container {
+  flex: 1;
+  position: relative;
+}
+
+.page-container > * {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Карточки */
+.section-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.section-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Список устройств */
+.device-item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px !important;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border-color) !important;
+  padding: 0.875rem 1rem !important;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.device-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--primary-color);
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+
+.device-item:hover {
+  background: var(--bg-gray);
+  border-color: var(--primary-color) !important;
+  transform: translateX(4px);
+}
+
+.device-item:hover::before {
+  transform: scaleY(1);
+}
+
+.device-item.active {
+  background: var(--primary-color) !important;
+  color: white !important;
+  border-color: var(--primary-color) !important;
+  transform: translateX(4px);
+  animation: activePulse 2s ease-in-out infinite;
+}
+
+.device-item.active::before {
+  display: none;
+}
+
+@keyframes activePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0);
+  }
+}
+
+/* Список игроков */
+.player-list {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.player-list h5 {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.player-card {
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease;
+  animation: slideInLeft 0.4s ease-out backwards;
+}
+
+.player-card:hover {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+.player-balance-badge {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+}
+
+.player-balance-badge.bg-success {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  border: 1px solid #a7f3d0;
+}
+
+.player-balance-badge.bg-danger {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fecaca;
+}
+
+.player-ops-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.player-item {
+  padding: 1.25rem !important;
+  border-radius: 8px !important;
+  margin-bottom: 0.75rem;
+  background: white;
+  border: 1px solid var(--border-color) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInLeft 0.4s ease-out backwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.player-item:hover {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.player-item .player-name {
+  font-size: 1rem;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.player-item .balance-badge {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.player-item .balance-badge.balance-positive {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  border: 1px solid #a7f3d0;
+}
+
+.player-item .balance-badge.balance-positive strong {
+  color: #065f46;
+  font-weight: 600;
+}
+
+.player-item .balance-badge.balance-negative {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fecaca;
+}
+
+.player-item .balance-badge.balance-negative strong {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+/* Операции с балансом */
+.balance-operations {
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.balance-operations:hover {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+}
+
+.balance-operations .card-body {
+  padding: 0;
+}
+
+.balance-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.balance-input-field {
+  width: 100%;
+}
+
+.balance-buttons-wrapper {
+  width: 100%;
+}
+
+.balance-button-group {
+  width: 100%;
+  display: flex;
+}
+
+.balance-button-group .balance-btn {
+  flex: 1;
+}
+
+.balance-operations .form-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.balance-operations .form-control {
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.balance-operations .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+  transform: scale(1.01);
+}
+
+.balance-operations .form-control.is-invalid {
+  border-color: var(--danger-color);
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.balance-operations .btn {
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.balance-operations .btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.balance-operations .btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.balance-operations .btn-success {
+  background: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.balance-operations .btn-success:hover {
+  background: #059669;
+  border-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+}
+
+.balance-operations .btn-success:active {
+  transform: translateY(0);
+}
+
+.balance-operations .btn-outline-danger {
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+  background: white;
+}
+
+.balance-operations .btn-outline-danger:hover {
+  background: var(--danger-color);
+  color: white;
+  border-color: var(--danger-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.balance-operations .btn-outline-danger:active {
+  transform: translateY(0);
+}
+
+.balance-operations .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Кнопка "Назад" */
+.back-button {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  background: white;
+  color: var(--text-primary);
+}
+
+.back-button:hover {
+  background: var(--bg-gray);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateX(-4px);
+}
+
+.back-button:hover .arrow-left-icon {
+  transform: translateX(-2px);
+}
+
+/* Иконки */
+.device-icon,
+.users-icon,
+.gamepad-icon {
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.device-icon:hover,
+.users-icon:hover,
+.gamepad-icon:hover {
+  transform: scale(1.1);
+  color: var(--primary-color);
+}
+
+.money-icon {
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.player-item:hover .money-icon {
+  opacity: 1;
+}
+
+.arrow-left-icon {
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.check-icon,
+.x-icon {
+  color: white;
+  animation: iconPop 0.3s ease;
+}
+
+@keyframes iconPop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Тостеры */
+.toast-container-fixed {
+  position: fixed !important;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toast-container-fixed .toast {
+  pointer-events: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+  margin-bottom: 0.75rem;
+  min-width: 300px;
+  animation: toastSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.toast-container-fixed .toast.showing {
+  animation: toastSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-container-fixed .toast.hiding {
+  animation: toastSlideOut 0.3s ease-in;
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.8);
+  }
+}
+
+.toast-container-fixed .toast.bg-success {
+  background: var(--success-color) !important;
+}
+
+.toast-container-fixed .toast.bg-danger {
+  background: var(--danger-color) !important;
+}
+
+.toast-container-fixed .toast-body {
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  position: relative;
+}
+
+.toast-animated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: toastProgress 5s linear;
+}
+
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+/* Пустое состояние */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+
+/* Алерты */
+.alert {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+/* Адаптивность для планшетов и мобильных */
+@media (max-width: 991.98px) {
+  .devices-page-card,
+  .players-page-card {
+    max-width: 100%;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Общие стили для мобильных */
+  .app-header .navbar-brand {
+    font-size: 1.125rem;
+    padding: 0.75rem 0;
+  }
+  
+  .section-card {
+    padding: 1rem !important;
+    border-radius: 8px;
+  }
+  
+  .section-card .card-header {
+    padding: 0.75rem 0 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Устройства */
+  .device-item {
+    padding: 0.875rem !important;
+    font-size: 0.9375rem;
+  }
+  
+  .device-item:hover {
+    transform: none; /* Убираем трансформацию на мобильных */
+  }
+  
+  .device-item.active {
+    transform: none;
+  }
+  
+  /* Игроки */
+  .player-card {
+    margin-bottom: 0.75rem;
+  }
+  
+  .player-card:hover {
+    transform: none; /* Убираем трансформацию на мобильных */
+  }
+  
+  .player-card .fw-semibold {
+    font-size: 0.9375rem !important;
+  }
+  
+  .player-balance-badge {
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.625rem;
+  }
+  
+  .player-ops {
+    margin-top: 0.75rem;
+  }
+  
+  .player-ops-title {
+    font-size: 0.6875rem;
+  }
+  
+  /* Операции с балансом */
+  .balance-operations {
+    margin-top: 0.75rem;
+  }
+  
+  .balance-operations .card-body {
+    padding: 0.875rem !important;
+  }
+  
+  .balance-operations .form-label {
+    font-size: 0.6875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .balance-input-wrapper {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .balance-input-field {
+    min-height: 44px;
+    font-size: 0.875rem;
+    padding: 0.625rem 0.75rem;
+    width: 100%;
+  }
+  
+  .balance-input-field:focus {
+    transform: none; /* Убираем масштабирование на мобильных */
+  }
+  
+  .balance-buttons-wrapper {
+    width: 100%;
+  }
+  
+  .balance-button-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .balance-button-group .balance-btn {
+    min-height: 44px;
+    font-size: 0.8125rem;
+    padding: 0.625rem 0.875rem;
+    flex: 1;
+  }
+  
+  /* Кнопка "Назад" */
+  .back-button {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+  }
+  
+  .back-button:hover {
+    transform: none; /* Убираем трансформацию на мобильных */
+  }
+  
+  /* Заголовки */
+  .player-list-animated h5 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Иконки */
+  .device-icon,
+  .users-icon,
+  .gamepad-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .money-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .arrow-left-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Очень маленькие экраны */
+  .app-header .navbar-brand {
+    font-size: 1rem;
+    padding: 0.625rem 0;
+  }
+  
+  .section-card {
+    padding: 0.875rem !important;
+    margin: 0 -0.5rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .devices-page-card,
+  .players-page-card {
+    margin: 0;
+  }
+  
+  /* Устройства */
+  .device-item {
+    padding: 0.75rem !important;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Игроки */
+  .player-card {
+    margin-bottom: 0.625rem;
+  }
+  
+  .player-card .card-body {
+    padding: 0.875rem !important;
+  }
+  
+  .player-card .fw-semibold {
+    font-size: 0.875rem !important;
+  }
+  
+  .player-balance-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .player-ops {
+    margin-top: 0.5rem;
+  }
+  
+  .player-ops-title {
+    font-size: 0.625rem;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .player-list h5 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Операции */
+  .balance-operations .card-body {
+    padding: 0.75rem !important;
+  }
+  
+  .balance-input-field {
+    font-size: 0.8125rem;
+    min-height: 44px;
+  }
+  
+  .balance-button-group .balance-btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    min-height: 44px;
+  }
+  
+  /* Кнопка "Назад" */
+  .back-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Заголовки страниц */
+  .section-card .card-title {
+    font-size: 0.6875rem !important;
+  }
+  
+  /* Тостеры */
+  .toast-container-fixed {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .toast-container-fixed .toast {
+    min-width: auto;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .toast-container-fixed .toast-body {
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Stack для мобильных */
+  .players-page-card .card-header .stack {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: stretch !important;
+  }
+  
+  .players-page-card .back-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .players-page-card .card-title {
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Контейнеры */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Улучшенная адаптивность для карточек игроков */
+  .player-card .row {
+    margin: 0;
+  }
+  
+  .player-card .col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Touch-friendly для мобильных */
+@media (hover: none) and (pointer: coarse) {
+  .device-item:hover,
+  .player-item:hover,
+  .balance-operations:hover {
+    transform: none;
+  }
+  
+  .device-item:active {
+    background: var(--bg-gray);
+  }
+  
+  .back-button:active {
+    background: var(--bg-gray);
+  }
+  
+  .balance-operations .btn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media (max-width: 991.98px) and (orientation: landscape) {
+  .app-header .navbar-brand {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+  
+  .section-card {
+    padding: 1rem !important;
+  }
+  
+  .player-card .card-body {
+    padding: 0.75rem !important;
+  }
+}
+
+/* Улучшения для больших экранов */
+@media (min-width: 1200px) {
+  .devices-page-card,
+  .players-page-card {
+    max-width: 1000px;
+  }
+}
+
+/* Улучшения для очень больших экранов */
+@media (min-width: 1400px) {
+  .devices-page-card,
+  .players-page-card {
+    max-width: 1200px;
+  }
+}
+
+/* Адаптивность для печати */
+@media print {
+  .app-header,
+  .back-button,
+  .balance-operations,
+  .toast-container-fixed {
+    display: none !important;
+  }
+  
+  .section-card {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}
+
+/* Анимации для списка игроков с задержкой */
+.player-item {
+  animation: slideInLeft 0.4s ease-out backwards;
+}
+
+.player-item:nth-child(1) { animation-delay: 0.05s; }
+.player-item:nth-child(2) { animation-delay: 0.1s; }
+.player-item:nth-child(3) { animation-delay: 0.15s; }
+.player-item:nth-child(4) { animation-delay: 0.2s; }
+.player-item:nth-child(5) { animation-delay: 0.25s; }
+.player-item:nth-child(n+6) { animation-delay: 0.3s; }
+
+/* Анимация баланса при изменении */
+@keyframes balanceUpdate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    color: var(--success-color);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.player-item .balance-badge {
+  transition: all 0.3s ease;
+}
+
+/* Плавная прокрутка */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Анимация загрузки */
+.spinner-border {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Анимация для пустого состояния */
+.empty-state {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Переходы между страницами */
+.page-players > * {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.page-devices > * {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
